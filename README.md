@@ -10,7 +10,7 @@ Our model operates on molecule SMILES and protein sequences, which allows us to 
 To obtain high-quality data for training, we have implemented a thorough ETL data pipeline and created a gold-standard dataset of over 80million protein-ligand activity datapoints from PubChem, ChEMBL and BindingDB databases.  
 In its standard HitID operating mode, the model treats molecules and proteins independently, and the cosine distance in the high-dimensional co-embedding space serves to identify hit-candidates for any given protein sequence. This allows us to perform ultra-fast virtual screens, searching through \>10 billion ligands with less than a day of compute.
 
-![][image1]  
+![Figure 1](images/image1.png)
 **Figure 1:** Model architecture for protein-ligand activity prediction.
 
 For hit list refinement as well as Hit2Lead scenarios, which is relevant for the ASAP Discovery challenge, the model can also operate in an interactive mode, where the protein module attends to the protein sequence of interest as well as a set of molecule representations, thus being able to extract targeted protein binding profiles relevant for a given set of ligands.
@@ -21,7 +21,7 @@ Initially, we used our model in interactive mode to co-embed the 1146 unique mol
 A UMAP project of the high-dimensional co-embedding space into 2D shows that the molecules fall into distinct clusters, mainly governed by the initial hits and their subsequent analogue expansion series (Figure 2). Ligands across and within clusters show pronounced organization by measured pIC50 values, suggesting our learned molecule embeddings represent meaningful biochemistry.  
 Moreover, the extracted binding profiles for both CoV proteins align with the main molecule clusters, suggesting our model was able to extract binding information from the protein sequences relevant for the given molecule set.
 
-![][image2]  
+![Figure 2](images/image2.png) 
 **Figure 2:** 2D UMAP projection of the zero-shot embedding of the provided ligands and the two CoV-proteins in the high-dimensional interaction space. Panels are split column-wise by the proteins and row-wise by the test and train set molecules, with the latter colored according to their measured pIC50 values. Six binding profiles that the model extracted from the amino acid sequences of both MERS and SARS main protease are shown as big, dark red points.
 
 **Potency calibration**  
